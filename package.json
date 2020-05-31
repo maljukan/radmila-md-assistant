@@ -26,8 +26,8 @@
     "postinstall": "electron-builder install-app-deps",
     "electron:dev": "concurrently \"BROWSER=none npm start\" \"wait-on http://localhost:3000 && tsc -p electron -w\" \"wait-on http://localhost:3000 && tsc -p electron && electron .\"",
     "electron:build": "npm build && tsc -p electron && electron-builder",
-    "build:css": "postcss src/assets/tailwind.css -o src/assets/main.css",
-    "watch:css": "postcss src/assets/tailwind.css -o src/assets/main.css"
+    "build:css": "postcss src/styles/tailwind.css -o src/styles/main.css",
+    "watch:css": "postcss src/styles/tailwind.css -o src/styles/main.css"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -47,6 +47,7 @@
   "devDependencies": {
     "@types/autoprefixer": "^9.7.2",
     "@types/electron-devtools-installer": "^2.2.0",
+    "@types/react-router-dom": "^5.1.5",
     "autoprefixer": "^9.8.0",
     "concurrently": "^5.2.0",
     "electron": "^9.0.0",
