@@ -14,17 +14,20 @@
     "@types/react-dom": "^16.9.8",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "typescript": "^3.7.5"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "npm run watch:css && react-scripts start",
+    "build": "npm run build:css && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "postinstall": "electron-builder install-app-deps",
     "electron:dev": "concurrently \"BROWSER=none npm start\" \"wait-on http://localhost:3000 && tsc -p electron -w\" \"wait-on http://localhost:3000 && tsc -p electron && electron .\"",
-    "electron:build": "npm build && tsc -p electron && electron-builder"
+    "electron:build": "npm build && tsc -p electron && electron-builder",
+    "build:css": "postcss src/assets/tailwind.css -o src/assets/main.css",
+    "watch:css": "postcss src/assets/tailwind.css -o src/assets/main.css"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -42,13 +45,17 @@
     ]
   },
   "devDependencies": {
+    "@types/autoprefixer": "^9.7.2",
     "@types/electron-devtools-installer": "^2.2.0",
+    "autoprefixer": "^9.8.0",
     "concurrently": "^5.2.0",
     "electron": "^9.0.0",
     "electron-builder": "^22.7.0",
     "electron-devtools-installer": "^3.0.0",
     "electron-is-dev": "^1.2.0",
     "electron-reload": "^1.5.0",
+    "postcss-cli": "^7.1.1",
+    "tailwindcss": "^1.4.6",
     "wait-on": "^5.0.0"
   },
   "build": {
