@@ -18,7 +18,7 @@
 }
 
 .beat-loader {
-  stroke: #E76E66;
+  stroke: #2f855a;
   stroke-dasharray: 175;
   stroke-dashoffset: 350;
   -webkit-animation: draw 1.4s linear;
