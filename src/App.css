@@ -44,3 +44,29 @@
     stroke-dashoffset: 0;
   }
 }
+
+.Modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  background-color: rgba(26, 32, 44, 1);
+  -webkit-box-shadow: 0 0px 13px rgba(47, 133, 90, 0.5);
+  -moz-box-shadow: 0 0px 13px rgba(47, 133, 90, 0.5);
+  box-shadow: 0 0px 13px rgba(47, 133, 90, 0.5);
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding-box;
+  background-clip: padding-box;
+  outline: 1px #22543d;
+  border: 1px solid #22543d;
+}
+
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(1, 13, 3, 0.8);
+}

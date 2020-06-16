@@ -3,8 +3,11 @@ import './App.css';
 import { Route, NavLink } from 'react-router-dom';
 import Patients from './Patients';
 import Appointment from './Appointment';
+import Datastore from 'nedb';
 
 function App() {
+  const dataStore = new Datastore({ filename: 'data/datasource.json', autoload: true });
+
   return (
     <div className="flex h-screen p-4 bg-gray-900">
       <div className="h-full w-64 p-4 shadow-lg flex flex-col justify-between">
@@ -39,8 +42,8 @@ function App() {
         </footer>
       </div>
         <div className="w-full h-full rounded overflow-hidden shadow-lg p-4">
-          <Route exact path="/" component={Appointment} ex/>
-          <Route path="/patients" component={Patients}/>
+          <Route exact path="/" component={Appointment} dataStore={dataStore} />
+          <Route path="/patients" render={(props) => <Patients {...props} dataStore={dataStore} />}/>
         </div>
     </div>
   );

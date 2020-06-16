@@ -12,8 +12,10 @@
     "@types/node": "^12.12.42",
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
+    "nedb": "^1.8.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-modal": "^3.11.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "typescript": "^3.7.5"
@@ -47,6 +49,8 @@
   "devDependencies": {
     "@types/autoprefixer": "^9.7.2",
     "@types/electron-devtools-installer": "^2.2.0",
+    "@types/nedb": "^1.8.9",
+    "@types/react-modal": "^3.10.5",
     "@types/react-router-dom": "^5.1.5",
     "autoprefixer": "^9.8.0",
     "concurrently": "^5.2.0",
