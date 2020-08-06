@@ -2,7 +2,7 @@ import React, { Component, FormEvent } from 'react';
 import { Patient } from '../model/Patient';
 import Modal from 'react-modal';
 import PatientForm from './PatientForm';
-import * as path from 'path';
+import * as Realm from 'realm'
 
 interface Props {
 }
