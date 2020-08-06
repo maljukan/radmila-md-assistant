@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Route, NavLink } from 'react-router-dom';
-import Patients from './Patients';
+import Patients from './patients/Patients';
 import Appointment from './Appointment';
 import Datastore from 'nedb';
 
