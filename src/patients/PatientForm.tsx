@@ -3,6 +3,7 @@ import ReactModal from 'react-modal';
 import { Patient } from '../model/Patient';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { dateToFirestoreTimestamp } from '../firebase/firebase.util';
 
 interface Props {
   isOpen?: boolean,
@@ -22,7 +23,7 @@ class PatientForm extends Component<Props, State, { isOpen: false }> {
     const patient = props.patient || {
       firstName: '',
       lastName: '',
-      dateOfBirth: new Date(),
+      dateOfBirth: dateToFirestoreTimestamp(new Date()),
       city: '',
       address: '',
       email: '',
@@ -60,7 +61,7 @@ class PatientForm extends Component<Props, State, { isOpen: false }> {
   }
 
   handleDateChange = (date: Date) => {
-    this.setState({patient: {dateOfBirth: date}});
+    this.setState({patient: {dateOfBirth: dateToFirestoreTimestamp(date)}});
   };
 
   submit(event: FormEvent) {
@@ -107,7 +108,11 @@ class PatientForm extends Component<Props, State, { isOpen: false }> {
             </div>
             <div className="flex justify-between items-center mb-4">
               <label className="inline text-green-800 pr-4">Date of birth</label>
-              <DatePicker onChange={this.handleDateChange} selected={this.state.patient.dateOfBirth}
+              <DatePicker onChange={this.handleDateChange}
+                          selected={this.state.patient.dateOfBirth && this.state.patient.dateOfBirth.toDate()}
+                          showMonthDropdown
+                          showYearDropdown
+                          dropdownMode="select"
                           wrapperClassName="inline w-64"
                           className="bg-gray-800 appearance-none border-2 border-gray-700 rounded py-2 px-4 mr-4 placeholder-gray-700 leading-tight focus:outline-none focus:bg-gray-700 focus:border-green-500">
               </DatePicker>

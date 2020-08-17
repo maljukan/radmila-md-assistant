@@ -1,8 +1,8 @@
-import React, { Component, FormEvent } from 'react';
+import React, { Component } from 'react';
 import { Patient } from '../model/Patient';
 import Modal from 'react-modal';
 import PatientForm from './PatientForm';
-import * as Realm from 'realm'
+import { addPatient, fetchPatients } from '../firebase/firebase.util';
 
 interface Props {
 }
@@ -26,6 +26,16 @@ class Patients extends Component<Props, State> {
   }
 
   componentDidMount() {
+    fetchPatients()
+      .then((documentData) => {
+        this.setState({
+          patients: documentData.docs.map(item => item.data())
+        });
+      })
+      .catch((error) => {
+        this.setState({patients: []});
+        throw error;
+      });
   }
 
   handleOpenModal() {
@@ -37,6 +47,11 @@ class Patients extends Component<Props, State> {
   }
 
   addPatient = (patient: Patient) => {
+    addPatient(patient).then((documentData) => {
+      this.setState({
+        patients: [...this.state.patients, ...[patient]]
+      });
+    });
     console.log(patient);
   };
 
@@ -76,7 +91,7 @@ class Patients extends Component<Props, State> {
                     <div className="table-cell p-4 text-sm">{patient.firstName}</div>
                     <div className="table-cell p-4 text-sm">{patient.lastName}</div>
                     <div className="table-cell p-4 text-sm">{patient.email}</div>
-                    <div className="table-cell p-4 text-sm">{patient.dateOfBirth?.toDateString()}</div>
+                    <div className="table-cell p-4 text-sm">{patient.dateOfBirth?.toDate().toLocaleString()}</div>
                     <div className="table-cell p-4 text-sm">{patient.city}</div>
                     <div className="table-cell p-4 text-sm">{patient.address}</div>
                     <div className="table-cell p-4 text-sm">{patient.phone}</div>

@@ -1,7 +1,9 @@
+import { firestore } from 'firebase';
+
 export interface Patient {
   firstName?: string;
   lastName?: string;
-  dateOfBirth?: Date;
+  dateOfBirth?: firestore.Timestamp;
   email?: string;
   phone?: string;
   city?: string;
