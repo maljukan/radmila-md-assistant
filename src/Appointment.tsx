@@ -126,7 +126,7 @@ class Appointment extends PureComponent<Props, {showModal: boolean, appointments
             {
               this.state.appointments.map((appointment, index) => {
                 return (
-                  <div className="table-row bg-gray-700 text-gray-200 hover:text-green-200" key={index}>
+                  <div className="table-row bg-gray-700 text-gray-200 hover:text-green-600" key={index}>
                     <div className="table-cell p-4 text-sm">{appointment.firstName}</div>
                     <div className="table-cell p-4 text-sm">{appointment.lastName}</div>
                     <div className="table-cell p-4 text-sm">{appointment.date.toDateString()}</div>

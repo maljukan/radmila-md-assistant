@@ -28,4 +28,6 @@ export const addPatient = async (patient: Patient) => Firestore.collection('/pat
 
 export const dateToFirestoreTimestamp = (date: Date) => firestore.Timestamp.fromDate(date);
 
+export const removePatient = async (id: string) => Firestore.collection('/patients').doc(id).delete();
+
 export default firebase;
