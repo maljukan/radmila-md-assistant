@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import ReactModal from 'react-modal';
 import {Appointment as AppointmentModel} from './model/Appointment';
 
@@ -6,7 +6,7 @@ interface OwnProps {}
 
 type Props = OwnProps;
 
-class Appointment extends PureComponent<Props, {showModal: boolean, appointments: AppointmentModel[]}> {
+class Appointment extends Component<Props, {showModal: boolean, appointments: AppointmentModel[]}> {
 
   constructor(props: Readonly<OwnProps>) {
     super(props);
