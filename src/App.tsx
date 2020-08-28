@@ -3,7 +3,8 @@ import './App.css';
 import { Route, NavLink } from 'react-router-dom';
 import Patients from './patients/Patients';
 import Appointment from './Appointment';
-import { Auth, fetchPatients, Firestore, signInWithGoogle } from './firebase/firebase.util';
+import { Auth, signInWithGoogle } from './firebase/firebase.util';
+import Patient from './patients/Patient';
 
 interface Props {
 }
@@ -55,7 +56,7 @@ export class App extends React.Component<Props, State> {
           <ul className="nav navbar-nav">
             <li className="mb-3">
               <NavLink exact={true} className="block text-center text-green-700 py-2 border border-gray-700 rounded hover:bg-gray-700"
-                       activeClassName='font-bold border-green-500' to='/'>Appointments</NavLink>
+                       activeClassName='font-bold border-green-500' to='/' >Appointments</NavLink>
             </li>
             <li className="mb-3">
               <NavLink className="block text-center text-green-700 py-2 border border-gray-700 rounded hover:bg-gray-700"
@@ -74,7 +75,8 @@ export class App extends React.Component<Props, State> {
         </div>
         <div className="w-full h-full rounded overflow-hidden shadow-lg p-4">
           <Route exact path="/" component={Appointment}/>
-          <Route path="/patients" render={(props) => <Patients {...props}/>}/>
+          <Route exact path="/patients" render={(props) => <Patients {...props}/>}/>
+          <Route exact path="/patients/:id" render={(props) => <Patient {...props}/>}/>
         </div>
       </div>
     );

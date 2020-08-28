@@ -30,4 +30,6 @@ export const dateToFirestoreTimestamp = (date: Date) => firestore.Timestamp.from
 
 export const removePatient = async (id: string) => Firestore.collection('/patients').doc(id).delete();
 
+export const getPatient = async (id: string) => Firestore.collection('/patients').doc(id).get();
+
 export default firebase;
