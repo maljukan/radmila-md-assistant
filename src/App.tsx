@@ -73,7 +73,7 @@ export class App extends React.Component<Props, State> {
             }
           </footer>
         </div>
-        <div className="w-full h-full rounded overflow-hidden shadow-lg p-4">
+        <div className="w-full h-full rounded overflow-x-hidden shadow-lg p-4">
           <Route exact path="/" component={Appointment}/>
           <Route exact path="/patients" render={(props) => <Patients {...props}/>}/>
           <Route exact path="/patients/:id" render={(props) => <Patient {...props}/>}/>
