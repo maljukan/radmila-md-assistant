@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Patient } from '../model/Patient';
 import Modal from 'react-modal';
 import PatientForm from './PatientForm';
-import { addPatient, fetchPatients, removePatient } from '../firebase/firebase.util';
 import DialogService from '../shared/dialog/DialogService';
+import PatientsService from "../services/PatientsService";
 import { Link } from 'react-router-dom';
 
 interface Props {
@@ -28,11 +28,8 @@ class Patients extends Component<Props, State> {
   }
 
   componentDidMount() {
-    fetchPatients()
-      .then((documentData) => {
-        const patients = documentData.docs.map((item) => {
-          return { ...item.data(), ...{ id: item.id } };
-        });
+    PatientsService.getAll()
+      .then((patients) => {
         console.log(patients);
         this.setState({ patients });
       })
@@ -51,9 +48,9 @@ class Patients extends Component<Props, State> {
   }
 
   addPatient = (patient: Patient) => {
-    addPatient(patient).then((documentData) => {
+    PatientsService.add(patient).then((patients) => {
       this.setState({
-        patients: [...this.state.patients, ...[{ ...patient, ...{ id: documentData.id } }]]
+        patients: patients
       });
     });
     console.log(patient);
@@ -65,10 +62,12 @@ class Patients extends Component<Props, State> {
     }
     const result = await DialogService.show({ title: 'Confirmation', message: 'Are you sure?' });
     if (result) {
-      const result = removePatient(id);
-      console.log(result);
-      this.setState({ patients: this.state.patients.filter(patient => patient.id !== id) });
-      return result;
+      try {
+        const patients = await PatientsService.remove(id);
+        this.setState({ patients: patients });
+      } catch (err) {
+        this.setState({ patients: [] });
+      }
     }
   };
 

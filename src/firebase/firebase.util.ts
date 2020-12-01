@@ -2,7 +2,7 @@ import firebase, { firestore } from 'firebase';
 import 'firebase/auth';
 import { Patient } from '../model/Patient';
 
-export const FIREBASE_CONFIG = {
+const FIREBASE_CONFIG = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
   databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
@@ -22,14 +22,6 @@ authProvider.setCustomParameters({prompt: 'select_account'});
 
 export const signInWithGoogle = () => Auth.signInWithPopup(authProvider);
 
-export const fetchPatients = async () => Firestore.collection('/patients').get();
-
-export const addPatient = async (patient: Patient) => Firestore.collection('/patients').add(patient);
-
 export const dateToFirestoreTimestamp = (date: Date) => firestore.Timestamp.fromDate(date);
-
-export const removePatient = async (id: string) => Firestore.collection('/patients').doc(id).delete();
-
-export const getPatient = async (id: string) => Firestore.collection('/patients').doc(id).get();
 
 export default firebase;
